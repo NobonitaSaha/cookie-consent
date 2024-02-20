@@ -54,41 +54,45 @@
 		</div>
 
         <script>
-			// Cookie PopUp Start
-			document.addEventListener("DOMContentLoaded", function () {
-				if (!getCookie("acceptedCookies")) {
-					document.getElementById("cookiePopup").classList.add("show");
-					document.querySelector(".cookie-overlay").classList.add("show-overlay");
-				}
-			});
-
-			function acceptCookies() {
-				document.getElementById("cookiePopup").classList.remove("show");
-				document.querySelector(".cookie-overlay").classList.remove("show-overlay");
-				setCookie("acceptedCookies", true, 30);
-			}
-
-			function setCookie(name, value, days) {
-				var expires = "";
-				if (days) {
-					var date = new Date();
-					date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-					expires = "; expires=" + date.toUTCString();
-				}
-				document.cookie = name + "=" + (value || "") + expires + "; path=/";
-			}
-
-			function getCookie(name) {
-				var nameEQ = name + "=";
-				var ca = document.cookie.split(';');
-				for (var i = 0; i < ca.length; i++) {
-					var c = ca[i];
-					while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-					if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-				}
-				return null;
-			}
-		</script>
+            // Cookie PopUp Start
+            document.addEventListener("DOMContentLoaded", function () {
+                if (!getCookie("acceptedCookies")) {
+                    document.getElementById("cookiePopup").classList.add("show");
+                    document.querySelector(".cookie-overlay").classList.add("show-overlay");
+                } else {
+                    document.body.style.display = ""; // Show the body if cookies are accepted
+                }
+            });
+    
+            function acceptCookies() {
+                document.getElementById("cookiePopup").classList.remove("show");
+                document.querySelector(".cookie-overlay").classList.remove("show-overlay");
+                setCookie("acceptedCookies", true, 30);
+                document.body.style.display = ""; // Show the body after accepting cookies
+            }
+    
+            function setCookie(name, value, days) {
+                var expires = "";
+                if (days) {
+                    var date = new Date();
+                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                    expires = "; expires=" + date.toUTCString();
+                }
+                document.cookie = name + "=" + (value || "") + expires + "; path=/";
+            }
+    
+            function getCookie(name) {
+                var nameEQ = name + "=";
+                var ca = document.cookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+                }
+                return null;
+            }
+        </script>
+        <!-- Cookie PopUp End -->
 		<!-- ========= Cookie PopUp End ============== -->
 		
 		
